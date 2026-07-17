@@ -22,8 +22,22 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;900&display=swap" rel="stylesheet">
   
-  <!-- PANGGIL CUSTOM CSS KITA (Tambahkan atribut type agar dicompile Tailwind) -->
-  <link rel="stylesheet" type="text/tailwindcss" href="css/style.css">
+  <!-- PANGGIL CUSTOM CSS KITA SECARA NATIVE -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CONFIGURATION ZONE: KHUSUS UNTUK MENGAKTIFKAN DETEKSI DARK MODE TAILWIND v4 -->
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+
+  <!-- INLINE ANTI-FLASH (WAJIB DI HEAD BIAR DARK MODE GAK KEDIP PUTIH) -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 
   <!-- INLINE ANTI-FLASH (WAJIB DI HEAD BIAR DARK MODE GAK KEDIP PUTIH) -->
   <script>
